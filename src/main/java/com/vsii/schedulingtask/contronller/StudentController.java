@@ -36,7 +36,6 @@ public class StudentController {
     public ResponseEntity<?> createStudent(@RequestBody Student student){
         Date date = new Date();
         student.setCreateTime(date);
-        System.out.println("Date: " + date);
         studentService.save(student);
         return new ResponseEntity<>(student, HttpStatus.CREATED);
     }
@@ -67,7 +66,7 @@ public class StudentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @Scheduled(fixedRate = 600000)// 5 phút
+    @Scheduled(fixedRate = 600000)
     public void deleteStudent(){
         List<Student> students = (List<Student>) studentService.findAll();
         Date date = new Date();
